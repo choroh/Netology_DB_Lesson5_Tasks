@@ -76,7 +76,7 @@ sel = connection.execute("""SELECT mix_name FROM mix
     JOIN musician_album ON album.album_id = musician_album.album_id
     JOIN musician ON musician_album.musician_id = musician.musician_id
     WHERE musician.musician_name IN ('Deep Purple')
-    GROUP BY mix_name
+    -- GROUP BY mix_name
     ORDER BY mix_name;
     """).fetchall()
 for i in sel:
@@ -113,7 +113,7 @@ sel = connection.execute("""
     JOIN album ON musician_album.album_id = album.album_id
     JOIN track ON album.album_id = track.album_id
     WHERE time = (SELECT MIN(time) FROM track)
-    GROUP BY musician_name, time;
+    -- GROUP BY musician_name, time;
     """).fetchall()
 for i in sel:
     print(f'Самый короткий по продолжительности трек у исполнителя: {i[0]} - {sec_min(i[1])[0]} : {sec_min(i[1])[1]}')
